@@ -1,0 +1,59 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Star_System",
+"language": "GDScript",
+"path": "res://Systems/System.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "ship_base",
+"language": "GDScript",
+"path": "res://Ships/Testing/ShipObject.gd"
+} ]
+_global_script_class_icons={
+"Star_System": "",
+"ship_base": ""
+}
+
+[application]
+
+config/name="RedSpace"
+run/main_scene="res://Lobby/Lobby.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Singletons/Global.gd"
+Signals="*res://Singletons/Signals.gd"
+
+[input]
+
+up={
+"deadzone": 0.5,
+"events": [  ]
+}
+down={
+"deadzone": 0.5,
+"events": [  ]
+}
+left={
+"deadzone": 0.5,
+"events": [  ]
+}
+right={
+"deadzone": 0.5,
+"events": [  ]
+}
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
