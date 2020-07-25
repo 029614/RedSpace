@@ -1,10 +1,12 @@
 extends Node
 
 const DEFAULT_PORT = 4242
-const MAX_PEERS = 10
 var CUSTOM_PORT = 4242
 var CUSTOM_IP = "127.0.0.1"
+var MAX_PEERS = 10
 var players = {}
+
+
 var player_name
 
 var mode = ''
@@ -18,10 +20,12 @@ func _ready():
     get_tree().connect("connected_to_server",self,"_connected_ok")
     get_tree().connect("connection_failed",self,"_connected_fail")
     get_tree().connect("server_disconnected",self,"_server_disconnect")
+    
+    print(Game.import_stars())
 
 
 func start_server():
-    player_name = 'Server'
+    #player_name = 'Server'
     var host = NetworkedMultiplayerENet.new()
     
     var err
@@ -39,7 +43,7 @@ func start_server():
 
 
 func join_server():
-    player_name = 'Client'
+    #player_name = 'Client'
     var host = NetworkedMultiplayerENet.new()
     
     host.create_client(CUSTOM_IP, CUSTOM_PORT)
@@ -90,7 +94,7 @@ remote func unregister_player(id):
 
 
 func spawn_player(id):
-    var player_scene = load("res://Ships/Testing/ShipObject.tscn")
+    var player_scene = load("res://Player/PlayerController.tscn")
     var player = player_scene.instance()
     
     player.set_name(str(id))
@@ -99,9 +103,12 @@ func spawn_player(id):
         player.set_network_master(id)
         
         player.player_id = id
+        Game.player_id = id
+        Game.player_ref = player
+        Game.player_name = player_name
         player.control = true
     
-    get_parent().add_child(player)
+    $Players.add_child(player)
     #add_child(player)
 
 
@@ -112,13 +119,13 @@ func quit_game():
 
 func _on_buttonHost_pressed():
     mode = 'host'
-    $PopupPanel/VBoxContainer/HBoxContainer.hide()
-    $PopupPanel.popup_centered()
+    $MainMenu/PopupPanel/VBoxContainer/HBoxContainer.hide()
+    $MainMenu/PopupPanel.popup_centered()
 
 
 func _on_buttonJoin_pressed():
     mode = 'join'
-    $PopupPanel.popup_centered()
+    $MainMenu/PopupPanel.popup_centered()
 
 
 func _on_IPEdit_text_changed(new_text):
@@ -132,9 +139,14 @@ func _on_PortEdit_text_changed(new_text):
 
 
 func _on_buttonConfirm_pressed():
-    $PopupPanel.hide()
-    $VBoxContainer.hide()
+    $MainMenu/VBoxContainer.hide()
+    $MainMenu/PopupPanel.hide()
     if mode == 'host':
         start_server()
     elif mode == 'join':
         join_server()
+    $World.create_scene(0)
+
+
+func _on_NameEdit_text_changed(new_text):
+    player_name = new_text

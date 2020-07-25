@@ -8,11 +8,6 @@ export var rotation_speed:int = 1
 export var top_speed:int = 10
 
 
-var control = false
-var player_id
-var ready = false
-
-
 var acceleration
 var velocity = Vector2()
 
@@ -39,64 +34,20 @@ var shield_states = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
     acceleration = thrust/weight
-    if control == true:
-        $PlayerController.player_camera.make_current()
+    start_up()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-        
     
-    var moveByX = 0
-    var moveByY = 0
-    
-    if control == true:
-        
-        get_input(delta)
         if get_movement_state() == 'is_thrusting':
             velocity += Vector2(1,0).rotated(rotation).normalized()*acceleration
-        
-    #get_input(delta)
-    #if get_movement_state() == 'is_thrusting':
-    #    velocity += Vector2(1,0).rotated(rotation).normalized()*acceleration
-    #    print(velocity)
         velocity = move_and_slide(velocity)
-        rpc_unreliable("move", global_position, rotation, player_id)
+            
 
 
-func get_input(delta):
-    if Input.is_action_pressed("ui_up"):
-        set_movement_state('is_thrusting')
-    else:
-        set_movement_state('idle')
+func start_up():
+    get_parent().get_parent().ship = self
     
-    if Input.is_action_pressed("ui_left"):
-        rotation -= rotation_speed*delta
-    if Input.is_action_pressed("ui_right"):
-        rotation += rotation_speed*delta
-
-
-remote func move(pos,rot,pid):
-    var root = get_parent()
-    var pnode = root.get_node(str(pid))
-    pnode.global_position = pos
-    pnode.rotation = rot
-
-
-func thrust(condition:bool):
-    if condition == true:
-        pass # Thrust on
-    if condition == false:
-        pass # Thrust off
-
-
-func destruct():
-    pass
-
-
-func disable():
-    pass
-
 
 func get_combat_state():
     for x in range(combat_states.size()):
@@ -144,9 +95,6 @@ func set_shield_state(state:String):
         shield_states[state] = true
     else:
         print('Shield State Error! State not found: ', state)
-    
-
-
 
 
 
