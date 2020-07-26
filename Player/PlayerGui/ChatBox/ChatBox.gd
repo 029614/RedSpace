@@ -19,13 +19,13 @@ var player_name = 'Test'
 var input_focus = false
 
 func _input(event):
-    if event is InputEventKey:
-        if event.is_action_released("T"):
-            input_field.grab_focus()
+    pass
+    #if event is InputEventKey:
+        #if event.is_action_released("T") and input_field != get_focus_owner():
+            #input_field.grab_focus()
 
 
 func _on_LineEdit_text_entered(new_text):
-    input_field.release_focus()
     var message_info = {
         'message':new_text,
         'color':groups[group_index]['color'],
@@ -35,15 +35,14 @@ func _on_LineEdit_text_entered(new_text):
     add_message(message_info)
     rpc("add_message", message_info)
     input_field.text = ''
+    input_field.release_focus()
 
 
 remote func add_message(message_info):
-    chat_log.bbcode_text += '\n'
-    chat_log.bbcode_text += '[color= ' + message_info['color'] + ']'
-    chat_log.bbcode_text += message_info['group'] + '/' + message_info['username'] + ': '
-    chat_log.bbcode_text += message_info['message']
-    #chat_log.bbcode_text += '\n' + '[color=' + groups[group_index]['color'] + ']' + groups[group_index]['name'] + '/' + username + ': ' + text
-
+    #chat_log.add_text('[color= ' + message_info['color'] + ']')
+    chat_log.add_text(message_info['group'] + '/' + message_info['username'] + ': ')
+    chat_log.add_text(message_info['message'])
+    chat_log.add_text('\n')
 
 func _on_OptionButton_item_selected(id):
     group_index = id

@@ -21,7 +21,10 @@ var game_version:String
 
 
 # ------ Game State Variables ------ #
-var current_system = null
+var current_system = 0
+var current_system_data = {}
+var current_system_planets = []
+var current_system_ships = []
 
 
 # ------ Core Game Data ------ #
@@ -50,3 +53,48 @@ func import_stars():
                 'planets':cfg.get_value(p, 'planets'),
                }
         return "Import Complete: Stars Loaded!"
+
+
+func change_system(id):
+    for s in starmap.values():
+        if s['id'] == id:
+            current_system = id
+            current_system_data = s
+
+
+func get_closest_planet(pos:Vector2):
+    if current_system_planets.size() == 0:
+        return 'No planets found'
+    else:
+        print(current_system_planets)
+        var closest_planet = null
+        for planet in current_system_planets:
+            if closest_planet == null:
+                closest_planet = planet
+            else:
+                if planet.global_position.distance_to(pos) < closest_planet.global_position.distance_to(pos):
+                    closest_planet = planet
+        return closest_planet
+
+
+func get_planets_in_system():
+    return current_system_planets
+
+
+func get_planet_by_id(id):
+    if current_system_planets.size() == 0:
+        return 'No planets found'
+    else:
+        for planet in current_system_planets:
+            if planet.planet_id == id:
+                return planet
+
+
+func get_ships_in_system():
+    return current_system_ships
+
+
+func get_closest_ship():
+    pass
+
+

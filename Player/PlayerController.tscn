@@ -25,9 +25,9 @@ __meta__ = {
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
 layer = -99
-offset = Vector2( 500, 300 )
+offset = Vector2( 960, 540 )
 scale = Vector2( 0.53, 0.56 )
-transform = Transform2D( 0.53, 0, 0, 0.56, 500, 300 )
+transform = Transform2D( 0.53, 0, 0, 0.56, 960, 540 )
 scroll_ignore_camera_zoom = true
 script = ExtResource( 3 )
 

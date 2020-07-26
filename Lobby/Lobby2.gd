@@ -89,7 +89,8 @@ remote func register_new_player(id, new_name):
 
 
 remote func unregister_player(id):
-    get_node("/root/" + str(id)).queue_free()
+    if get_node("/root/" + str(id)):
+        get_node("/root/" + str(id)).queue_free()
     players.erase(id)
 
 

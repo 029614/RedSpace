@@ -31,3 +31,4 @@ func create_planet(planet_info):
     $Bodies.add_child(newp)
     newp.set_scale(planet_info['size'])
     newp.global_position = planet_info['pos']
+    Game.current_system_planets.append(newp)

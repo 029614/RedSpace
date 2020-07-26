@@ -1,9 +1,7 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var map = $Map
 
 
 # Called when the node enters the scene tree for the first time.
