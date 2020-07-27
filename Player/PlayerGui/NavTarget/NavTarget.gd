@@ -11,7 +11,7 @@ func _ready():
     pass # Replace with function body.
 
 
-func target_planet(planet):
+func targetPlanet(planet):
     if planet != null:
         $Panel2/VBoxContainer/texturePlanetSprite.set_texture(load('res://Core' + planet.planet_info['sprite_path']))
         $Panel2/VBoxContainer/labelPlanetName.set_text(planet.planet_info['name'])

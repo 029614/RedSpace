@@ -1,19 +1,74 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Icons/SpaceImage03.jpg" type="Texture" id=1]
+[ext_resource path="res://StarMap/StarMap.gd" type="Script" id=2]
 
-[node name="StarMap" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id=1]
 
-[node name="SystemIcons" type="Node2D" parent="."]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="StarMap" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+rect_clip_content = true
+mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SystemIcons" type="Node2D" parent="TextureRect"]
+position = Vector2( 400, 208 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -48.0
+margin_right = -16.0
+margin_bottom = -16.0
+mouse_filter = 2
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttonCancel" type="Button" parent="HBoxContainer"]
+margin_left = 1484.0
+margin_right = 1684.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 200, 0 )
+text = "Cancel"
+
+[node name="buttonSelect" type="Button" parent="HBoxContainer"]
+margin_left = 1688.0
+margin_right = 1888.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 200, 0 )
+text = "Close"
+[connection signal="pressed" from="HBoxContainer/buttonCancel" to="." method="_on_buttonCancel_pressed"]
+[connection signal="pressed" from="HBoxContainer/buttonSelect" to="." method="_on_buttonSelect_pressed"]

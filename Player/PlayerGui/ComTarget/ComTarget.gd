@@ -13,16 +13,20 @@ func _ready():
 #func _process(delta):
 #    pass
 
-func target(targ:Object):
+func target(targ:Object, targ_info):
+    print('target', targ)
     if targ == null:
         $Panel2/VBoxContainer/targetImage.hide()
         $Panel2/VBoxContainer/targetStatus.hide()
         $Panel2/VBoxContainer/actionList.hide()
         $Panel2/VBoxContainer/labelName.hide()
     else:
+        print('target: ', targ)
+        print('target name: ', targ.get_parent().get_parent().test_var)
         target = targ
-        image(targ.ship.sprite_path)
-        information(targ.get_parent().get_parent().player_name)
+        print('sprite path: ', targ.sprite_path)
+        image(targ.sprite_path)
+        information(targ_info['name'])
         
         $Panel2/VBoxContainer/targetImage.show()
         $Panel2/VBoxContainer/targetStatus.show()

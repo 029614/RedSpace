@@ -25,6 +25,7 @@ var current_system = 0
 var current_system_data = {}
 var current_system_planets = []
 var current_system_ships = []
+var current_system_players = []
 
 
 # ------ Core Game Data ------ #
@@ -74,6 +75,7 @@ func get_closest_planet(pos:Vector2):
             else:
                 if planet.global_position.distance_to(pos) < closest_planet.global_position.distance_to(pos):
                     closest_planet = planet
+        print(closest_planet.planet_name)
         return closest_planet
 
 
@@ -90,6 +92,10 @@ func get_planet_by_id(id):
                 return planet
 
 
+func get_players_in_system():
+    pass
+
+
 func get_ships_in_system():
     return current_system_ships
 
@@ -102,13 +108,15 @@ func get_closest_ship(pos:Vector2,origin_ship):
         print('Current ships in game: ',current_system_ships)
         var closest_ship = null
         for ship in current_system_ships:
-            if closest_ship != origin_ship:
+            print('ship: ', ship, ' origin ship: ', origin_ship)
+            if ship != origin_ship:
                 if closest_ship == null:
                     closest_ship = ship
                 else:
                     if ship.global_position.distance_to(pos) < closest_ship.global_position.distance_to(pos):
                         closest_ship = ship
-            return closest_ship
+        print('closest_ship: ', closest_ship)
+        return closest_ship
 
 
 func integer_to_currency_format(integer:int):
@@ -121,3 +129,7 @@ func integer_to_currency_format(integer:int):
         res += string[i]
 
     return res
+
+
+func getStarMap():
+    return starmap

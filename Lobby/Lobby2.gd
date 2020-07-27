@@ -89,8 +89,8 @@ remote func register_new_player(id, new_name):
 
 
 remote func unregister_player(id):
-    if get_node("/root/" + str(id)):
-        get_node("/root/" + str(id)).queue_free()
+    if get_node("/root/Players/" + str(id)):
+        get_node("/root/Players/" + str(id)).queue_free()
     players.erase(id)
 
 
@@ -99,18 +99,20 @@ func spawn_player(id):
     var player = player_scene.instance()
     
     player.set_name(str(id))
+    player.player_id = id
     
     if id == get_tree().get_network_unique_id():
         player.set_network_master(id)
         
-        player.player_id = id
+        player.player_name = player_name
         Game.player_id = id
         Game.player_ref = player
         Game.player_name = player_name
         player.control = true
+        #player.configure()
     
     $Players.add_child(player)
-    Game.current_system_ships.append(player)
+    Game.current_system_ships.append(player.ship_slot.get_child(0))
     Signals.emit_signal("update_ships_in_system", Game.current_system_ships)
     #add_child(player)
 
@@ -133,12 +135,13 @@ func _on_buttonJoin_pressed():
 
 func _on_IPEdit_text_changed(new_text):
     use_custom = true
-    CUSTOM_IP = new_text
+    if new_text.is_valid_int():
+        CUSTOM_IP = new_text
 
 
 func _on_PortEdit_text_changed(new_text):
     use_custom = true
-    CUSTOM_PORT = new_text
+    CUSTOM_PORT = int(new_text)
 
 
 func _on_buttonConfirm_pressed():

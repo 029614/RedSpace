@@ -3,13 +3,16 @@ extends Node2D
 
 var control = false
 
-var player_name:String
+var player_name:String = "Player"
 var player_id:int
 var player_money:int
 var player_combat_rating:int
 var player_govt_relationships = {} #Each government gets a value between -100 and 100
 var ship = null
 var ship_scale = Vector2()
+var test_var = 'Fucking fuck shit ass!'
+
+var target_player_info = {}
 
 # ------ Player Config ------ #
 var ZOOM_SENSITIVITY = 1
@@ -33,6 +36,7 @@ func _ready():
     
     player_gui.map.create_map()
     ship_scale = ship.scale
+    $UILayer/PlayerGui/StarMap.createMap()
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -73,10 +77,10 @@ func get_input(delta):
     if Input.is_action_just_pressed("land"):
         var p = Game.get_closest_planet(ship.global_position)
         if target_planet == null:
-            target_planet(p)
+            targetPlanet(p)
         elif target_planet != null and p != target_planet:
             p = Game.get_closest_planet(ship.global_position)
-            target_planet(p)
+            targetPlanet(p)
         elif target_planet != null and p == target_planet:
             if _over_planet != null and _over_planet == p:
                 if ship.speed < 25:
@@ -86,14 +90,21 @@ func get_input(delta):
                     print('You are moving too fast to land!')
     
     if Input.is_action_just_pressed("target_closest"):
-        target_ship = Game.get_closest_ship(ship.global_position,ship)
-        $UILayer/PlayerGui/RCon/ComTarget.target(target_ship)
+        target_ship = Game.get_closest_ship(ship_slot.get_child(0).global_position,ship_slot.get_child(0))
+        var player_info = rpc_id(target_ship.get_parent().get_parent().player_id, "get_player_info", player_id)
+        
 
 
 func _input(event):
     if event.is_action_pressed("primary_action"):
         if flight_status == '_is_landed':
             launch()
+    if event.is_action_pressed("Map"):
+        if $UILayer/PlayerGui/StarMap.is_visible():
+            $UILayer/PlayerGui/StarMap.hide()
+        else:
+            $UILayer/PlayerGui/StarMap.show()
+            
 
 
 remote func move(pos,rot,pid):
@@ -110,9 +121,9 @@ func thrust(condition:bool):
         pass # Thrust off
 
 
-func target_planet(planet):
+func targetPlanet(planet):
     target_planet = planet
-    player_gui.nav_target.target_planet(target_planet)
+    player_gui.nav_target.targetPlanet(target_planet)
 
 
 func land(planet):
@@ -138,7 +149,7 @@ func launch():
         ship_slot.show()
         flight_status = flight_conditions[0]
         target_planet = null
-        player_gui.nav_target.target_planet(target_planet)
+        player_gui.nav_target.targetPlanet(target_planet)
         $UILayer/PlayerGui/PlanetInterface.hide()
         rpc("launch_broadcast", player_id)
 
@@ -159,4 +170,14 @@ func disable():
     pass
 
 
+remote func get_player_info(sender_id):
+    var info = {
+        'name':player_name,
+        'id':player_id,
+        'combat':player_combat_rating
+       }
+    rpc_id(get_tree().get_rpc_sender_id(), 'target_with_info', info)
+
+remote func target_with_info(info):
+    $UILayer/PlayerGui/RCon/ComTarget.target(target_ship, info)
 

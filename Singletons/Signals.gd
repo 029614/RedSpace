@@ -7,8 +7,14 @@ extends Node
 
 signal player_joined_scene
 signal player_landed
-signal launch_player
+
+signal launch_players
+signal system_targeted
+
 signal update_ships_in_system
+signal update_players_in_system
+signal update_bodies_in_system
+signal change_system
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

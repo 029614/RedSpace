@@ -3,7 +3,7 @@ extends Control
 
 onready var map_center = Game.player_ref.global_position
 var map_info
-var players_in_system = Game.get_ships_in_system()
+var ships_in_system = Game.get_ships_in_system()
 var ships_being_tracked = []
 onready var map_correction = $Panel.rect_size/2
 var map_scale = 0.1
@@ -16,21 +16,21 @@ func _ready():
 
 
 func _physics_process(delta):
-    for player in players_in_system:
-        if player != Game.player_ref:
-            if player.ship.global_position.distance_to(Game.player_ref.ship.global_position) <= radar_range:
+    for ship in ships_in_system:
+        if ship != Game.player_ref.ship_slot.get_child(0):
+            if ship.global_position.distance_to(Game.player_ref.ship.global_position) <= radar_range:
                 var _is_tracked = false
                 for track in ships_being_tracked:
-                    if track.ship_ref == player.ship:
+                    if track.ship_ref == ship:
                         _is_tracked = true
-                        track.position = player.ship.global_position*map_scale
-                        track.rotation = player.ship.rotation
+                        track.position = ship.global_position*map_scale
+                        track.rotation = ship.rotation
                 if _is_tracked == false:
                     print('tracking target')
-                    track(player.ship)
+                    track(ship)
             else:
                 for track in ships_being_tracked:
-                    if track.ship_ref == player.ship:
+                    if track.ship_ref == ship:
                         print('ceasing to track target')
                         unTrack(track)
                     
@@ -56,7 +56,7 @@ func unTrack(track):
 
 
 func update_ship_list(ship_list):
-    players_in_system = ship_list
+    ships_in_system = ship_list
 
 
 func create_map():
