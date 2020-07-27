@@ -17,23 +17,23 @@ __meta__ = {
 }
 
 [node name="buttonNew" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 364.0
+margin_top = 844.0
 margin_right = 181.0
-margin_bottom = 400.0
+margin_bottom = 880.0
 rect_min_size = Vector2( 0, 36 )
 text = "New Game"
 
 [node name="buttonLoad" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 404.0
+margin_top = 884.0
 margin_right = 181.0
-margin_bottom = 440.0
+margin_bottom = 920.0
 rect_min_size = Vector2( 0, 36 )
 text = "Load Game"
 
 [node name="buttonJoin" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 444.0
+margin_top = 924.0
 margin_right = 181.0
-margin_bottom = 480.0
+margin_bottom = 960.0
 rect_min_size = Vector2( 0, 36 )
 size_flags_horizontal = 3
 text = "Join Online Game"
@@ -42,9 +42,9 @@ __meta__ = {
 }
 
 [node name="buttonHost" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 484.0
+margin_top = 964.0
 margin_right = 181.0
-margin_bottom = 520.0
+margin_bottom = 1000.0
 rect_min_size = Vector2( 0, 36 )
 size_flags_horizontal = 3
 text = "Host Online Game"
@@ -53,16 +53,16 @@ __meta__ = {
 }
 
 [node name="buttonSettings" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 524.0
+margin_top = 1004.0
 margin_right = 181.0
-margin_bottom = 560.0
+margin_bottom = 1040.0
 rect_min_size = Vector2( 0, 36 )
 text = "Settings"
 
 [node name="buttonQuit" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 564.0
+margin_top = 1044.0
 margin_right = 181.0
-margin_bottom = 600.0
+margin_bottom = 1080.0
 rect_min_size = Vector2( 0, 36 )
 text = "Quit"
 

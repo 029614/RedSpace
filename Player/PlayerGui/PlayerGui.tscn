@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/PlayerGui/PlayerGui.gd" type="Script" id=1]
 [ext_resource path="res://Player/PlayerGui/ChatBox/ChatBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/PlayerGui/Map/Map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/PlayerGui/NavTarget/NavTarget.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/PlayerGui/PlanetInterface/PlanetInterface.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/PlayerGui/PlayerInfo/PlayerInfo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player/PlayerGui/ComTarget/ComTarget.tscn" type="PackedScene" id=7]
 
 [node name="PlayerGui" type="Control"]
 anchor_right = 1.0
@@ -20,13 +23,49 @@ anchor_right = 0.0
 margin_top = -136.0
 margin_right = 448.0
 
-[node name="Map" parent="." instance=ExtResource( 3 )]
-anchor_left = 1.0
-anchor_bottom = 0.0
-margin_left = -256.0
-margin_bottom = 256.0
+[node name="PlanetInterface" parent="." instance=ExtResource( 5 )]
+visible = true
+margin_left = 480.0
+margin_top = 344.0
+margin_right = -320.0
 
-[node name="NavTarget" parent="." instance=ExtResource( 4 )]
-margin_left = 1664.0
-margin_top = 256.0
-margin_bottom = -552.0
+[node name="RCon" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -256.0
+custom_constants/separation = -8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" parent="RCon" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 256.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 0, 256 )
+
+[node name="NavTarget" parent="RCon" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 248.0
+margin_right = 256.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 0, 256 )
+
+[node name="ComTarget" parent="RCon" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 496.0
+margin_right = 256.0
+margin_bottom = 752.0
+rect_min_size = Vector2( 0, 256 )
+
+[node name="PlayerInfo" parent="RCon" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 744.0
+margin_right = 256.0
+margin_bottom = 872.0
+rect_min_size = Vector2( 0, 128 )

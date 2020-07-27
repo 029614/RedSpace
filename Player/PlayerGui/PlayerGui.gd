@@ -1,7 +1,9 @@
 extends Control
 
 
-onready var map = $Map
+onready var map = $RCon/Map
+onready var nav_target = $RCon/NavTarget
+onready var player_info = $RCon/PlayerInfo
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Ships/Testing/bigbrother.png" type="Texture" id=1]
 [ext_resource path="res://Ships/Testing/ShipObject.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 62.0772
 
 [node name="ShipObject" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -19,3 +22,11 @@ rotation = 1.5708
 scale = Vector2( 0.15, 0.15 )
 polygon = PoolVector2Array( 19, -380.8, 28, -371.8, 28, -358, 41.9, -186.8, 74.2, -176, 77.5, -179.4, 80, -178.3, 80, -176.5, 94, -153.6, 94, -149, 140, 39.8, 140, 46.1, 135.1, 49.3, 133, 48.2, 133, 117, 131.1, 117, 107.5, 151.4, 125.4, 158, 151, 158, 303, 156, 303, 155.3, 324, 151.6, 324, 153.2, 339, 155.2, 339, 157.4, 341.3, 160.9, 340.2, 163, 338.9, 163, 309.9, 194, 307.5, 194, 87, 310.2, 84.7, 326, 82.9, 326, 72.1, 337.7, 75.3, 343, 74.2, 345, 73.1, 345, 69, 352.5, 69, 359, 77.2, 375, 73.8, 375, 66.8, 382, 30, 382, 26, 387, -10, 387, -10, 384.8, -13.8, 381, -15, 381, -54, 382, -54, 380, -62, 374, -62, 370.4, -55, 359.4, -55, 352.6, -61, 343.6, -61, 339, -58, 336.7, -69, 323.7, -69, 312, -293, 194.2, -293, 192.8, -324, 161.8, -324, 157.5, -301, 151.4, -301, 153.3, -288.6, 156, -212, 156, -111, 158, -89.7, 151.7, -116, 116.7, -116, 97.1, -119, 95.1, -119, 68, -117.9, 68, -116.3, 47.2, -118.5, 49.4, -121, 48.3, -121, 46, -123.6, 36, -121.6, 36, -77.6, -154, -76.3, -154, -63.2, -178, -59.2, -178, -58.2, -177, -25, -186.5, -25, -194.1, -10.8, -375, -8.79999, -375, -3, -380.8, -3, -383, 19, -383 )
 disabled = true
+
+[node name="LandingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LandingArea"]
+position = Vector2( 16.7511, 0 )
+shape = SubResource( 1 )
+[connection signal="area_entered" from="LandingArea" to="." method="_on_LandingArea_area_entered"]
+[connection signal="area_exited" from="LandingArea" to="." method="_on_LandingArea_area_exited"]

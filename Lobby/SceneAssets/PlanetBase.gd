@@ -19,9 +19,5 @@ func set_sprite(path):
     $Sprite.set_texture(load(path))
 
 
-func _on_Area2D_body_entered(body):
-    print('body entered!')
-
-
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
     print('body shape entered!')

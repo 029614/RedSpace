@@ -40,6 +40,7 @@ __meta__ = {
 }
 
 [node name="texturePlanetSprite" type="TextureRect" parent="Panel2/VBoxContainer"]
+visible = false
 margin_right = 1888.0
 margin_bottom = 1056.0
 size_flags_vertical = 3

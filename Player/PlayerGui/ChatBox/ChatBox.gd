@@ -18,6 +18,12 @@ var group_index = 0
 var player_name = 'Test'
 var input_focus = false
 
+
+
+func _ready():
+    $VBoxContainer/HBoxContainer/Label.text = '[' + Game.player_name + ']'
+
+
 func _input(event):
     pass
     #if event is InputEventKey:

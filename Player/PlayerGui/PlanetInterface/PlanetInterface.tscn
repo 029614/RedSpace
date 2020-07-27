@@ -1,0 +1,279 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player/PlayerGui/PlanetInterface/PlanetInterface.gd" type="Script" id=1]
+[ext_resource path="res://Player/PlayerGui/PlanetInterface/ShipyardPopup.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0.196078 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="PlanetInterface" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 760.0, 960.0 ],
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rightMenu" type="VBoxContainer" parent="Panel2"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -240.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/rightMenu"]
+margin_right = 232.0
+margin_bottom = 522.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttonShipYard" type="Button" parent="Panel2/rightMenu/VBoxContainer"]
+margin_right = 232.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 48 )
+text = "Ship Yard"
+
+[node name="buttonOutfitter" type="Button" parent="Panel2/rightMenu/VBoxContainer"]
+margin_top = 52.0
+margin_right = 232.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 48 )
+text = "Outfitter"
+
+[node name="buttonShips" type="Button" parent="Panel2/rightMenu/VBoxContainer"]
+margin_top = 104.0
+margin_right = 232.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 0, 48 )
+text = "My Ships"
+
+[node name="buttonRefuel" type="Button" parent="Panel2/rightMenu/VBoxContainer"]
+margin_top = 156.0
+margin_right = 232.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 48 )
+text = "Refuel"
+
+[node name="buttonRearm" type="Button" parent="Panel2/rightMenu/VBoxContainer"]
+margin_top = 208.0
+margin_right = 232.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 0, 48 )
+text = "Rearm"
+
+[node name="buttonRepair" type="Button" parent="Panel2/rightMenu/VBoxContainer"]
+margin_top = 260.0
+margin_right = 232.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 0, 48 )
+text = "Repair"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel2/rightMenu"]
+margin_top = 526.0
+margin_right = 232.0
+margin_bottom = 1048.0
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttonLeave" type="Button" parent="Panel2/rightMenu/VBoxContainer3"]
+margin_top = 474.0
+margin_right = 232.0
+margin_bottom = 522.0
+rect_min_size = Vector2( 0, 48 )
+text = "Take Off"
+
+[node name="leftMenu" type="VBoxContainer" parent="Panel2"]
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/leftMenu"]
+margin_right = 232.0
+margin_bottom = 526.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttonEscorts" type="Button" parent="Panel2/leftMenu/VBoxContainer"]
+margin_right = 232.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 48 )
+text = "Hire Escorts"
+
+[node name="buttonBank" type="Button" parent="Panel2/leftMenu/VBoxContainer"]
+margin_top = 52.0
+margin_right = 232.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 48 )
+text = "Bank"
+
+[node name="buttonTrade" type="Button" parent="Panel2/leftMenu/VBoxContainer"]
+margin_top = 104.0
+margin_right = 232.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 0, 48 )
+text = "Trade"
+
+[node name="buttonMissions" type="Button" parent="Panel2/leftMenu/VBoxContainer"]
+margin_top = 156.0
+margin_right = 232.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 48 )
+text = "Missions"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel2/leftMenu"]
+margin_top = 530.0
+margin_right = 232.0
+margin_bottom = 1056.0
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttonBar" type="Button" parent="Panel2/leftMenu/VBoxContainer3"]
+margin_top = 478.0
+margin_right = 232.0
+margin_bottom = 526.0
+rect_min_size = Vector2( 0, 48 )
+text = "Bar"
+
+[node name="planetDesc" type="TextEdit" parent="Panel2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_top = -232.0
+margin_right = -312.0
+margin_bottom = -12.0
+
+[node name="planetSprite" type="TextureRect" parent="Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_top = 8.0
+margin_right = -312.0
+margin_bottom = -248.0
+expand = true
+stretch_mode = 6
+
+[node name="Popups" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Shipyard" type="Control" parent="Popups"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -256.0
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="Popups/Shipyard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Panel2" type="Panel" parent="Popups/Shipyard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="itemShip" type="ItemList" parent="Popups/Shipyard/Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -312.0
+custom_styles/bg = SubResource( 5 )
+max_columns = 6
+icon_mode = 0
+fixed_icon_size = Vector2( 100, 100 )
+
+[node name="labelDesc" type="RichTextLabel" parent="Popups/Shipyard/Panel2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -296.0
+margin_right = -8.0
+margin_bottom = -112.0
+
+[node name="containerButtons" type="HBoxContainer" parent="Popups/Shipyard/Panel2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -56.0
+margin_bottom = -8.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttonBuy" type="Button" parent="Popups/Shipyard/Panel2/containerButtons"]
+margin_left = 1244.0
+margin_right = 1444.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 200, 0 )
+text = "Purchase"
+
+[node name="buttonBack" type="Button" parent="Popups/Shipyard/Panel2/containerButtons"]
+margin_left = 1448.0
+margin_right = 1648.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 200, 0 )
+text = "Back"
+[connection signal="popup_hide" from="." to="." method="_on_PlanetInterface_popup_hide"]
+[connection signal="pressed" from="Panel2/rightMenu/VBoxContainer/buttonShipYard" to="." method="_on_buttonShipYard_pressed"]
+[connection signal="pressed" from="Panel2/rightMenu/VBoxContainer3/buttonLeave" to="." method="_on_buttonLeave_pressed"]
+[connection signal="item_selected" from="Popups/Shipyard/Panel2/itemShip" to="Popups/Shipyard" method="_on_itemShip_item_selected"]
+[connection signal="pressed" from="Popups/Shipyard/Panel2/containerButtons/buttonBack" to="." method="_on_buttonBack_pressed"]

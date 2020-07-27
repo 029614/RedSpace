@@ -110,6 +110,8 @@ func spawn_player(id):
         player.control = true
     
     $Players.add_child(player)
+    Game.current_system_ships.append(player)
+    Signals.emit_signal("update_ships_in_system", Game.current_system_ships)
     #add_child(player)
 
 

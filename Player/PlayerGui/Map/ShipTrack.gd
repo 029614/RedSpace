@@ -1,14 +1,8 @@
-extends Node
+extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var ship_ref
 
-signal player_joined_scene
-signal player_landed
-signal launch_player
-signal update_ships_in_system
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

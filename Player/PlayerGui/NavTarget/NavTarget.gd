@@ -12,8 +12,12 @@ func _ready():
 
 
 func target_planet(planet):
-    var it = ImageTexture.new()
-    it.load('res://Core' + planet.planet_info['sprite_path'])
-    $Panel2/VBoxContainer/texturePlanetSprite.set_texture(it)
-    $Panel2/VBoxContainer/labelPlanetName.set_text(planet.planet_info['name'])
-    $Panel2/VBoxContainer/labelPlanetName.show()
+    if planet != null:
+        $Panel2/VBoxContainer/texturePlanetSprite.set_texture(load('res://Core' + planet.planet_info['sprite_path']))
+        $Panel2/VBoxContainer/labelPlanetName.set_text(planet.planet_info['name'])
+        $Panel2/VBoxContainer/labelPlanetName.show()
+        $Panel2/VBoxContainer/texturePlanetSprite.show()
+    elif planet == null:
+        $Panel2/VBoxContainer/labelPlanetName.hide()
+        $Panel2/VBoxContainer/texturePlanetSprite.hide()
+        

@@ -10,6 +10,19 @@ export var top_speed:int = 10
 
 var acceleration
 var velocity = Vector2()
+var speed = 0
+
+var ship_class:String = "Bering"
+var ship_type:String = "Capital"
+var ship_name:String
+var sprite_path:String = "res://Ships/Testing/bigbrother.png"
+var ship_desc:String = "As far as civilian ships go, the Bering class capital ship is about as good as it gets. With a well rounded utility profile, the Bering class is equally at home running cargo, transporting people and pouring defensive fire onto whoever may be foolish enough to attack her. She is the centerpiece of any good merchant fleet."
+var ship_cost:int = 5000000
+var ship_scale:Vector2
+var ship_factions = [0] # Array of govt id's or 0 for all
+var ship_cargo:int = 500
+var ship_persons:int = 125
+var ship_crew:int = 40
 
 var movement_states = {
     'idle':true,
@@ -42,6 +55,7 @@ func _physics_process(delta):
         if get_movement_state() == 'is_thrusting':
             velocity += Vector2(1,0).rotated(rotation).normalized()*acceleration
         velocity = move_and_slide(velocity)
+        speed = velocity.length()
             
 
 
@@ -97,14 +111,9 @@ func set_shield_state(state:String):
         print('Shield State Error! State not found: ', state)
 
 
+func _on_LandingArea_area_entered(area):
+    get_parent().get_parent()._over_planet = area.get_parent()
 
 
-
-
-
-
-
-
-
-
-
+func _on_LandingArea_area_exited(area):
+    get_parent().get_parent()._over_planet = null

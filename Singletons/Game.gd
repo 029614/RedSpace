@@ -94,7 +94,30 @@ func get_ships_in_system():
     return current_system_ships
 
 
-func get_closest_ship():
-    pass
+func get_closest_ship(pos:Vector2,origin_ship):
+    if current_system_ships.size() == 0:
+        print('No ships found!')
+        return null
+    else:
+        print('Current ships in game: ',current_system_ships)
+        var closest_ship = null
+        for ship in current_system_ships:
+            if closest_ship != origin_ship:
+                if closest_ship == null:
+                    closest_ship = ship
+                else:
+                    if ship.global_position.distance_to(pos) < closest_ship.global_position.distance_to(pos):
+                        closest_ship = ship
+            return closest_ship
 
 
+func integer_to_currency_format(integer:int):
+    var string = str(integer)
+    var slength = string.length() % 3
+    var res = ""
+    for i in range(0, string.length()):
+        if i != 0 && i % 3 == slength:
+            res += ","
+        res += string[i]
+
+    return res
